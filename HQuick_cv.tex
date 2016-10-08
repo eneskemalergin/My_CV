@@ -1,0 +1,514 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Simple LaTeX CV Template %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% NOTE: If you find that it says                                     %%
+%%                                                                    %%
+%%                           1 of ??                                  %%
+%%                                                                    %%
+%% at the bottom of your first page, this means that the AUX file     %%
+%% was not available when you ran LaTeX on this source. Simply RERUN  %%
+%% LaTeX to get the ``??'' replaced with the number of the last page  %%
+%% of the document. The AUX file will be generated on the first run   %%
+%% of LaTeX and used on the second run to fill in all of the          %%
+%% references.                                                        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Don't like 10pt? Try 11pt or 12pt
+\documentclass[10pt]{article}
+
+% The automated optical recognition software used to digitize resume
+% information works best with fonts that do not have serifs. This
+% command uses a sans serif font throughout. Uncomment both lines (or at
+% least the second) to restore a Roman font (i.e., a font with serifs).
+%\usepackage{times}
+%\renewcommand{\familydefault}{\sfdefault}
+
+% This is a helpful package that puts math inside length specifications
+\usepackage{calc}
+\usepackage{comment}
+
+% Simpler bibsection for CV sections
+% (thanks to natbib for inspiration)
+\makeatletter
+\newlength{\bibhang}
+\setlength{\bibhang}{1em} %1em}
+\newlength{\bibsep}
+ {\@listi \global\bibsep\itemsep \global\advance\bibsep by\parsep}
+\newenvironment{bibsection}%
+        {\begin{enumerate}{}{%
+%        {\begin{list}{}{%
+       \setlength{\leftmargin}{\bibhang}%
+       \setlength{\itemindent}{-\leftmargin}%
+       \setlength{\itemsep}{\bibsep}%
+       \setlength{\parsep}{\z@}%
+        \setlength{\partopsep}{0pt}%
+        \setlength{\topsep}{0pt}}}
+        {\end{enumerate}\vspace{-.6\baselineskip}}
+%        {\end{list}\vspace{-.6\baselineskip}}
+\makeatother
+
+% Layout: Puts the section titles on left side of page
+\reversemarginpar
+
+%
+%         PAPER SIZE, PAGE NUMBER, AND DOCUMENT LAYOUT NOTES:
+%
+% The next \usepackage line changes the layout for CV style section
+% headings as marginal notes. It also sets up the paper size as either
+% letter or A4. By default, letter was used. If A4 paper is desired,
+% comment out the letterpaper lines and uncomment the a4paper lines.
+%
+% As you can see, the margin widths and section title widths can be
+% easily adjusted.
+%
+% ALSO: Notice that the includefoot option can be commented OUT in order
+% to put the PAGE NUMBER *IN* the bottom margin. This will make the
+% effective text area larger.
+%
+% IF YOU WISH TO REMOVE THE ``of LASTPAGE'' next to each page number,
+% see the note about the +LP and -LP lines below. Comment out the +LP
+% and uncomment the -LP.
+%
+% IF YOU WISH TO REMOVE PAGE NUMBERS, be sure that the includefoot line
+% is uncommented and ALSO uncomment the \pagestyle{empty} a few lines
+% below.
+%
+
+%% Use these lines for letter-sized paper
+\usepackage[paper=letterpaper,
+            %includefoot, % Uncomment to put page number above margin
+            marginparwidth=1.2in,     % Length of section titles
+            marginparsep=.05in,       % Space between titles and text
+            margin=1in,               % 1 inch margins
+            includemp]{geometry}
+
+%% Use these lines for A4-sized paper
+%\usepackage[paper=a4paper,
+%            %includefoot, % Uncomment to put page number above margin
+%            marginparwidth=30.5mm,    % Length of section titles
+%            marginparsep=1.5mm,       % Space between titles and text
+%            margin=25mm,              % 25mm margins
+%            includemp]{geometry}
+
+%% More layout: Get rid of indenting throughout entire document
+\setlength{\parindent}{0in}
+
+\usepackage[shortlabels]{enumitem}
+
+%% Reference the last page in the page number
+%
+% NOTE: comment the +LP line and uncomment the -LP line to have page
+%       numbers without the ``of ##'' last page reference)
+%
+% NOTE: uncomment the \pagestyle{empty} line to get rid of all page
+%       numbers (make sure includefoot is commented out above)
+%
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+%\pagestyle{empty}      % Uncomment this to get rid of page numbers
+\fancyhf{}\renewcommand{\headrulewidth}{0pt}
+\fancyfootoffset{\marginparsep+\marginparwidth}
+\newlength{\footpageshift}
+\setlength{\footpageshift}
+          {0.5\textwidth+0.5\marginparsep+0.5\marginparwidth-2in}
+\lfoot{\hspace{\footpageshift}%
+       \parbox{4in}{\, \hfill %
+                    \arabic{page} of \protect\pageref*{LastPage} % +LP
+%                    \arabic{page}                               % -LP
+                    \hfill \,}}
+
+% Finally, give us PDF bookmarks
+\usepackage{color,hyperref}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.3}
+\hypersetup{colorlinks,breaklinks,
+            linkcolor=darkblue,urlcolor=darkblue,
+            anchorcolor=darkblue,citecolor=darkblue}
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The title (name) with a horizontal rule under it
+% (optional argument typesets an object right-justified across from name
+%  as well)
+%
+% Usage: \makeheading{name}
+%        OR
+%        \makeheading[right_object]{name}
+%
+% Place at top of document. It should be the first thing.
+% If ``right_object'' is provided in the square-braced optional
+% argument, it will be right justified on the same line as ``name'' at
+% the top of the CV. For example:
+%
+%       \makeheading[\emph{Curriculum vitae}]{Your Name}
+%
+% will put an emphasized ``Curriculum vitae'' at the top of the document
+% as a title. Likewise, a picture could be included:
+%
+%   \makeheading[\includegraphics[height=1.5in]{my_picutre}]{Your Name}
+%
+% the picture will be flush right across from the name.
+\newcommand{\makeheading}[2][]%
+        {\hspace*{-\marginparsep minus \marginparwidth}%
+         \begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
+             {\large \bfseries #2 \hfill #1}\\[-0.15\baselineskip]%
+                 \rule{\columnwidth}{1pt}%
+         \end{minipage}}
+
+% The section headings
+%
+% Usage: \section{section name}
+\renewcommand{\section}[1]{\pagebreak[3]%
+    \hyphenpenalty=10000%
+    \vspace{1.3\baselineskip}%
+    \phantomsection\addcontentsline{toc}{section}{#1}%
+    \noindent\llap{\scshape\smash{\parbox[t]{\marginparwidth}{\raggedright #1}}}%
+    \vspace{-\baselineskip}\par}
+
+% An itemize-style list with lots of space between items
+\newenvironment{outerlist}[1][\enskip\textbullet]%
+        {\begin{itemize}[#1,leftmargin=*]}{\end{itemize}%
+         \vspace{-.6\baselineskip}}
+
+% An environment IDENTICAL to outerlist that has better pre-list spacing
+% when used as the first thing in a \section
+\newenvironment{lonelist}[1][\enskip\textbullet]%
+        {\begin{list}{#1}{%
+        \setlength{\partopsep}{0pt}%
+        \setlength{\topsep}{0pt}}}
+        {\end{list}\vspace{-.6\baselineskip}}
+
+% An itemize-style list with little space between items
+\newenvironment{innerlist}[1][\enskip\textbullet]%
+        {\begin{itemize}[#1,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt]}
+        {\end{itemize}}
+
+% An environment IDENTICAL to innerlist that has better pre-list spacing
+% when used as the first thing in a \section
+\newenvironment{loneinnerlist}[1][\enskip\textbullet]%
+        {\begin{itemize}[#1,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt]}
+        {\end{itemize}\vspace{-.6\baselineskip}}
+
+% To add some paragraph space between lines.
+% This also tells LaTeX to preferably break a page on one of these gaps
+% if there is a needed pagebreak nearby.
+\newcommand{\blankline}{\quad\pagebreak[3]}
+\newcommand{\halfblankline}{\quad\vspace{-0.5\baselineskip}\pagebreak[3]}
+
+% Uses hyperref to link DOI
+\newcommand\doilink[1]{\href{http://dx.doi.org/#1}{#1}}
+\newcommand\doi[1]{doi:\doilink{#1}}
+
+% For \url{SOME_URL}, links SOME_URL to the url SOME_URL
+\providecommand*\url[1]{\href{#1}{#1}}
+% Same as above, but pretty-prints SOME_URL in teletype fixed-width font
+\renewcommand*\url[1]{\href{#1}{\texttt{#1}}}
+
+% For \email{ADDRESS}, links ADDRESS to the url mailto:ADDRESS
+\providecommand*\email[1]{\href{mailto:#1}{#1}}
+% Same as above, but pretty-prints ADDRESS in teletype fixed-width font
+%\renewcommand*\email[1]{\href{mailto:#1}{\texttt{#1}}}
+
+%\providecommand\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+%    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+%\providecommand\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+%    \TeX}}
+\providecommand\BibTeX{{B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    \TeX}}
+\providecommand\Matlab{\textsc{Matlab}}
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Begin CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\makeheading{Harrison S. Quick}
+
+\section{Contact Information}
+
+% NOTE: Mind where the & separators and \\ breaks are in the following
+%       table.
+%
+% ALSO: \rcollength is the width of the right column of the table
+%       (adjust it to your liking; default is 1.85in).
+%
+\newlength{\rcollength}\setlength{\rcollength}{1.4in}%
+%
+\begin{tabular}[t]{@{}p{\textwidth-\rcollength}p{\rcollength}}
+%\href{http://www.cse.osu.edu/}%
+%     {Department of Computer Science and Engineering} & \\
+%\href{http://www.osu.edu/}{The Ohio State University}
+8151 33rd Ave S Unit 409   & 507-304-1668 \\
+Bloomington, MN  55425     & \email{quic0038@umn.edu}\\
+\end{tabular}
+
+%\section{Objective}
+
+%Insert text here if you want to
+%\begin{innerlist}
+%\item More information and auxiliary documents can be found at\\\url{http://www.tedpavlic.com/facjobsearch/}
+%\end{innerlist}
+
+\section{Research Interests}
+
+Bayesian modeling, spatiotemporal modeling, spatial data analysis, longitudinal data analysis, computing
+
+\section{Education}
+
+\href{http://www.umn.edu}{\textbf{University of Minnesota}},
+Minneapolis, MN
+\begin{outerlist}
+
+\item[] Ph.D.,
+        \href{http://www.sph.umn.edu/biostatistics/}
+             {Biostatistics},
+             \emph{Expected:} Summer 2013
+        \begin{innerlist}
+        \item Thesis Topic: \emph{Spatiotemporal Gradient Modeling with Applications}
+        \item Advisors:
+              \href{http://www.biostat.umn.edu/~brad/}
+                   {Bradley P. Carlin, Ph.D} and
+              \href{http://www.biostat.umn.edu/~sudiptob/}
+                   {Sudipto Banerjee, Ph.D}
+        \end{innerlist}
+
+\item[] M.S.,
+        \href{http://www.sph.umn.edu/biostatistics/}
+             {Biostatistics},
+             Aug 2010
+        \begin{innerlist}
+        \item Topic: \emph{Assessing the Impact of the Density of Alcohol Establishments on Crime in Minneapolis Neighborhoods Using Univariate and Multivariate Conditionally Autoregressive Models}
+        \item Advisor:
+              \href{http://www.biostat.umn.edu/~brad/}
+                   {Bradley P. Carlin, Ph.D}
+        \end{innerlist}
+\end{outerlist}
+\vspace{.1in}
+\href{http://www.mnsu.edu}{\textbf{Minnesota State University}},
+Mankato, MN
+\begin{outerlist}
+\item[] B.S.,
+        \href{http://www.cset.mnsu.edu/mathstat/}
+             {Mathematics and Statistics} (Double Major), May 2008
+        \begin{innerlist}
+        \item \emph{Summa Cum Laude}
+        \end{innerlist}
+
+\end{outerlist}
+
+\section{Research Experience}
+
+\textbf{Research Assistant} \hfill {May 2011 to present}
+\begin{innerlist}
+
+\item[] Division of Biostatistics,\\
+        University of Minnesota\\
+        Supervisor: Bradley P. Carlin, Ph.D
+\end{innerlist}
+\textbf{Research Assistant} \hfill {June 2010 to May 2011}
+\begin{innerlist}
+
+\item[] Division of Epidemiology,\\
+        University of Minnesota\\
+        Supervisors: Traci L. Toomey, Ph.D and Bradley P. Carlin, Ph.D
+\end{innerlist}
+\textbf{Research Assistant} \hfill {Sept 2008 to Aug 2010}
+\begin{innerlist}
+
+\item[] Division of Biostatistics,\\
+        University of Minnesota\\
+        Supervisors: Katherine Huppler-Hullsiek, Ph.D and Jason V. Baker, M.D., M.S.
+\end{innerlist}
+
+\section{Refereed Journal Publications}
+\vspace{-.1275in}
+\begin{bibsection}
+    \item Baker, J., Duprez, D., Rapkin, J., Huppler-Hullsiek, K., {\bf Quick, H.}, Grimm, R., Neaton, J.D., and Henry, K.  ``Untreated HIV infection and large and small artery elasticity." \emph{JAIDS}, 52(1):25--31, 2009.
+    \item Baker, J., Ayenew, W., {\bf Quick, H.}, Huppler-Hullsiek, K., Tracy, R., Henry, K., Duprez, D., and Neaton, J.D.  ``High-density lipoprotein particles and markers of inflammation and thrombotic activity in patients with untreated HIV infection." \emph{Journal of Infectious Diseases}, 201(2):285--292, 2010.
+    \item Baker, J., {\bf Quick, H.}, Huppler-Hullsiek, K., Tracy, R., Duprez, D., Henry, K., and Neaton, J.D.  ``IL-6 and d-dimer levels are associated with vascular dysfunction in patients with untreated HIV infection." \emph{HIV Medicine}, 11(9):608--609, 2010.
+    \item Kunisaki, K.M., {\bf Quick, H.}, and Baker, J.V.  ``HIV antiretroviral therapy reduces circulating surfactant protein-D levels." \emph{HIV Medicine}, 12(9):580--581, 2011.
+    \item Toomey, T.L., Erickson, D.J., Carlin, B.P., {\bf Quick, H.S.}, Harwood, E.M., Lenk, K.M., and Ecklund, A.M.  ``Is the density of alcohol establishments related to non-violent crime?" \emph{Journal of Studies on Alcohol and Drugs}, 73(1)21--25, 2012.
+    \item Toomey, T.L., Erickson, D.J., Carlin, B.P., Lenk, K.M., {\bf Quick, H.S.}, Jones, A.M., and Haroowd, E.M. ``The association between density of alcohol establishments and violent crime within urban neighborhoods."  \emph{Alcoholism: Clinical and Experimental Research}, 36(8):1468--1473, 2012.
+        %To appear \emph{Alcoholism: Clinical and Experimental Research}, 2012.
+    \item {\bf Quick, H.}, Banerjee, S., and Carlin, B.P. ``Modeling temporal gradients in regionally aggregated California asthma hospitalization data." To appear in {\em The Annals of Applied Statistics}, 2012.
+\end{bibsection}
+
+\section{Submitted Journal Publications}
+\vspace{-.125in}
+\begin{bibsection}
+    \item Toomey, T.L., Erickson, D.J., Carlin, B.P., Lenk, K.M., {\bf Quick, H.S.}, and Harwood, E.M. ``Do neighborhood attributes moderate the relationship between alcohol establishment density and crime?" 2012. Submitted to \emph{Prevention Science}.
+\end{bibsection}
+
+% Add a little space to nudge next ``Conference Publications'' marginpar
+% down to make room for tall ``Submitted Journal Publications''
+% marginpar. If there are enough submitted journal publications, this
+% space will not be needed (and should be removed).
+%\vspace{0.1in}
+
+\section{Papers in Preparation}
+\vspace{-.1in}
+\begin{bibsection}
+%    \item Toomey, T.L., Erickson, D.J., Carlin, B.P., Lenk, K.M., {\bf Quick, H.S.}, and Harwood, E.M. ``Do neighborhood attributes moderate the relationship between alcohol establishment density and crime?"
+    \item {\bf Quick, H.}, Banerjee, S., and Carlin, B.P. ``Heteroscedastic variances in areally referenced temporal processes with an application to California asthma hospitalization data.''
+
+    \item {\bf Quick, H.}, Carlin, B.P., and Banerjee, S. ``Space-time Gaussian process modeling of temporal air pollution gradients."
+\end{bibsection}
+
+\section{Awards}
+Travel Awards
+\begin{innerlist}
+\item Workshop on Environmetrics, Raleigh, NC\hfill Oct 2012
+\item Case Studies in Bayesian Statistics and\hfill Oct 2011\\
+Machine Learning, Pittsburgh, PA
+\item IMS/ISBA Joint International Meeting, Park City, UT\hfill Jan 2011
+\end{innerlist}
+
+\halfblankline
+
+Student Awards --- University of Minnesota, Division of Biostatistics
+\begin{innerlist}
+\item Outstanding Teaching Assistant Award\hfill May 2012
+\item Outstanding Research Assistant Award\hfill May 2011
+\item James R. Boen Student Achievement Award\hfill May 2009
+\end{innerlist}
+
+\halfblankline
+
+Student Awards --- University of Minnesota, Graduate School
+\begin{innerlist}
+\item Doctoral Dissertation Fellowship\hfill 2012--2013
+\begin{innerlist}
+    \item The Doctoral Dissertation Fellowship (DDF) program is intended to give the most accomplished final-year PhD candidates an opportunity to complete the dissertation within the 2012--13 academic year by devoting full-time effort to research and writing.
+\end{innerlist}
+\end{innerlist}
+
+\section{Presentations}
+Statistical Meetings
+\begin{innerlist}
+\item Workshop on Environmetrics, Raleigh, NC \hfill Oct 2012
+\item Joint Statistical Meetings, San Diego, CA \hfill Aug 2012
+\item Biometric Society (ENAR) Regional Meeting, Washington, D.C. \hfill Apr 2012
+\item Case Studies in Bayesian Statistics and\hfill Oct 2011\\
+Machine Learning, Pittsburgh, PA
+\item Biometric Society (ENAR) Regional Meeting, Miami, FL \hfill Mar 2011
+\item IMS/ISBA Joint International Meeting, Park City, UT \hfill Jan 2011
+\end{innerlist}
+
+\halfblankline
+
+University of Minnesota
+\begin{innerlist}
+\item Mostly Markov Chain Seminar Series \hfill Nov 2011
+\item School of Public Health Research Day \hfill Apr 2011
+\end{innerlist}
+
+
+\section{Teaching Experience}
+
+%\textbf{Teaching Assistant} \hfill {Springs 2011--12}
+Co-instructor \hfill {Summer 2013}
+\begin{innerlist}
+\item[] PUBH 6400 - Topics in Hierarchical Bayesian Analysis\\
+        with Bradley P. Carlin\\
+        Division of Biostatistics,\\
+        University of Minnesota
+\end{innerlist}
+
+Teaching Assistant \hfill {Springs 2011--12}
+\begin{innerlist}
+
+\item[] PUBH 7440 - Introduction to Bayesian Analysis\\
+        Instructor: Bradley P. Carlin, Ph.D\\
+        Division of Biostatistics,\\
+        University of Minnesota
+\end{innerlist}
+
+\section{Service}
+Recruiting Committee, Division of Biostatistics \hfill {May 2010 -- Present}
+\begin{innerlist}
+    \item Assist with planning of annual Division of Biostatistics Open House and Admitted Student Visit Days
+    \item Meet with prospective and admitted students %; answer questions from a student's perspective
+\end{innerlist}
+
+\halfblankline
+
+Student Member of Search Committee for the \hfill {June 2010 -- Aug 2010}\\
+SPH Coordinator of Recruitment and Student Leadership
+\begin{innerlist}
+    \item Assisted in job search for the SPH Coordinator of Recruitment and Student Leadership
+    \item Reviewed applications, conducted interviews
+\end{innerlist}
+
+\section{References}
+
+Bradley P.\ Carlin
+\begin{innerlist}
+\item[] Mayo Professor in Public Health, Division Head \hfill {Phone: 612-624-6646}\\
+Division of Biostatistics \hfill{E-mail: carli002@umn.edu}\\
+University of Minnesota
+\end{innerlist}
+
+\halfblankline
+
+Sudipto Banerjee
+\begin{innerlist}
+\item[] Professor \hfill {Phone: 612-624-0624}\\
+Division of Biostatistics \hfill{E-mail: baner009@umn.edu}\\
+University of Minnesota
+\end{innerlist}
+
+\halfblankline
+
+Traci Toomey
+\begin{innerlist}
+\item[] Professor \hfill {Phone: 612-626-9070}\\
+Division of Epidemiology \hfill{E-mail: toome001@umn.edu}\\
+University of Minnesota
+\end{innerlist}
+
+%\section{Hardware and Software Skills}
+\begin{comment}
+Computer Programming:
+%
+\begin{innerlist}
+    \item C, C$+$$+$, Java, JavaScript, NetLogo, Pascal, Perl, PHP,
+        Lisp, UNIX shell scripting (including POSIX.2), GNU make,
+        AppleScript, SQL, MySQL, \Matlab, Maple, Mathematica, and others
+\end{innerlist}
+
+\halfblankline
+\end{comment}
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% End CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------%
+% The following is copyright and licensing information for
+% redistribution of this LaTeX source code; it also includes a liability
+% statement. If this source code is not being redistributed to others,
+% it may be omitted. It has no effect on the function of the above code.
+%----------------------------------------------------------------------%
+% Copyright (c) 2007, 2008, 2009, 2010, 2011 by Theodore P. Pavlic
+%
+% Unless otherwise expressly stated, this work is licensed under the
+% Creative Commons Attribution-Noncommercial 3.0 United States License. To
+% view a copy of this license, visit
+% http://creativecommons.org/licenses/by-nc/3.0/us/ or send a letter to
+% Creative Commons, 171 Second Street, Suite 300, San Francisco,
+% California, 94105, USA.
+%
+% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+% OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+% MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+% IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+% CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+% TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+% SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+%----------------------------------------------------------------------%
