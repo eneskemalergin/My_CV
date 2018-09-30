@@ -14,4 +14,9 @@ _book
 *.epub
 *.mobi
 
-.DS_Store
+*.DS_Store
+*.log
+*.synctex
+*.gz
+*.yaml
+*.fls
