@@ -20,3 +20,5 @@ _book
 *.gz
 *.yaml
 *.fls
+*.aux
+*.fdb_latexmk
