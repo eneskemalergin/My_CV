@@ -22,6 +22,10 @@ _book
 *.fls
 *.aux
 *.fdb_latexmk
+*.out
+*.toc
+*.lof
+
 
 # Job-specific CVs — private, not tracked
 job_specific/
