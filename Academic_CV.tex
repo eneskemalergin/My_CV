@@ -3,6 +3,7 @@
 
 \usepackage{pifont}      % required for \ding symbols used in list1 environment
 \usepackage{microtype}   % better typography, reduces overfull hbox warnings
+\usepackage{enumitem}    % modern list control
 \usepackage{hyperref}
 \hypersetup{
    colorlinks,
@@ -24,32 +25,24 @@
 \setlength{\pdfpagewidth}{\paperwidth}
 \setlength{\pdfpageheight}{\paperheight}
 
-\newenvironment{list1}{
-  \begin{list}{\ding{113}}{%
-      \setlength{\itemsep}{0in}
-      \setlength{\parsep}{0in} \setlength{\parskip}{0in}
-      \setlength{\topsep}{0in} \setlength{\partopsep}{0in}
-      \setlength{\leftmargin}{0.17in}}}{\end{list}}
-\newenvironment{list2}{
-  \begin{list}{$\bullet$}{%
-      \setlength{\itemsep}{0in}
-      \setlength{\parsep}{0in} \setlength{\parskip}{0in}
-      \setlength{\topsep}{0in} \setlength{\partopsep}{0in}
-      \setlength{\leftmargin}{0.2in}}}{\end{list}}
+\newlist{list1}{itemize}{1}
+\setlist[list1]{label=\ding{113},nosep,leftmargin=0.17in}
+\newlist{list2}{itemize}{2}
+\setlist[list2]{label=$\bullet$,nosep,leftmargin=0.2in}
 
 
 \begin{document}
 
-\name{Enes Kemal Ergin \vspace*{.1in}}
+\name{Enes Kemal Ergin, PhD \vspace*{.1in}}
 
 \begin{resume}
 \section{\sc Contact Information}
 \vspace{.05in}
 \begin{tabular}{@{}p{2.3in}p{3.45in}}
-{\it Cell:} 778-751-1649            & \hfill {\it GitHub:}  \href{https://github.com/eneskemalergin}{eneskemalergin} \\
-{\it Work:} 604-875-2000 ext:7146   & \hfill {\it E-mail:}  \href{mailto:eneskemalergin@gmail.com}{eneskemalergin@gmail.com}\\
-                                    & \hfill {\it Portfolio:}  \href{https://eneskemalergin.github.io}{eneskemalergin.github.io} \\
-                                    & \hfill {\it LinkedIn:}  \href{https://www.linkedin.com/in/eneskemalergin/}{eneskemalergin} \\
+{\it Cell:} 778-751-1649                                                               & \hfill {\it GitHub:}  \href{https://github.com/eneskemalergin}{github.com/eneskemalergin} \\
+{\it Work:} 604-875-2000 ext:7146                                                      & \hfill {\it LinkedIn:}  \href{https://www.linkedin.com/in/eneskemalergin/}{linkedin.com/in/eneskemalergin} \\
+{\it E-mail:}  \href{mailto:eergin@bcchr.ca}{eergin@bcchr.ca}                         & \hfill {\it Portfolio:}  \href{https://eneskemalergin.github.io}{eneskemalergin.github.io} \\
+\hspace{3.65em}\href{mailto:eneskemalergin@gmail.com}{eneskemalergin@gmail.com}        & \hfill {\it Google Scholar:}  \href{https://scholar.google.com/citations?user=6iZzHecAAAAJ&hl=en}{Enes K. Ergin} \\
 \end{tabular}
 
 
@@ -58,7 +51,6 @@ Computational biology, high-throughput omics data analysis, cancer proteomics, m
 
 \section{\sc Education}
 
-% Uncomment for PhD
 {\bf University of British Columbia (UBC)}, Vancouver, BC Canada\\
 {\em Bioinformatics}
 \begin{list1}
@@ -91,7 +83,8 @@ Computational biology, high-throughput omics data analysis, cancer proteomics, m
 {\em BC Children's Hospital Research Institute} \hfill {\bf June, 2025 - present}\\
 \vspace{-.3cm}
 \begin{list2}
-\item Maintaining and developing computational infrastructure for large-scale proteomics data analysis; ongoing statistical method development and application of machine learning approaches to childhood cancer research.
+\item Develop and maintain computational infrastructure for large-scale proteomics data analysis across multiple childhood cancer cohorts.
+\item Implement statistical methods and machine learning approaches to support translational research in pediatric oncology.
 \end{list2}
 
 {\bf Graduate Research Assistant}
@@ -100,15 +93,9 @@ Computational biology, high-throughput omics data analysis, cancer proteomics, m
 {\em BC Children's Hospital Research Institute} \hfill {\bf September, 2017 - April, 2025}\\
 \vspace{-.3cm}
 \begin{list2}
-\item {\bf Research:} Implementing statistical and computational methods for exploring proteomic features in childhood cancers based on bottom-up proteomics approaches focused on proteoforms.
-\begin{list2}
-\item {\bf Aim 1:} To expand statistical explainability through equivalence testing.
-      (\href{https://github.com/LangeLab/Analysis_of_QuEStVar_Manuscript}{QuEStVar},~\href{https://doi.org/10.1021/acs.jproteome.4c00131}{Paper})
-\item {\bf Aim 2:} To enhance peptide-level identification and quantification in proteomics data.
-      (\href{https://github.com/LangeLab/SQuAPP}{SQuAPP},~\href{https://doi.org/10.1093/bioinformatics/btac628}{Paper})
-\item {\bf Aim 3:} To identify quantitatively distinct proteoforms at the peptide level in Neuroblastoma.
-      (\href{https://github.com/LangeLab/ProteoForge_Analysis}{ProteoForge},~\href{https://www.biorxiv.org/content/10.64898/2025.12.12.694008}{Preprint})
-\end{list2}
+\item Developed and implemented \href{https://github.com/LangeLab/Analysis_of_QuEStVar_Manuscript}{QuEStVar}, expanding statistical explainability through equivalence testing, resulting in a first-author publication in the \href{https://doi.org/10.1021/acs.jproteome.4c00131}{\emph{Journal of Proteome Research}}.
+\item Built \href{https://github.com/LangeLab/SQuAPP}{SQuAPP}, a tool to enhance peptide-level identification and quantification in proteomics data, published in \href{https://doi.org/10.1093/bioinformatics/btac628}{\emph{Bioinformatics}}.
+\item Created \href{https://github.com/LangeLab/ProteoForge_Analysis}{ProteoForge}, an imputation-aware framework for identifying quantitatively distinct proteoforms at the peptide level in Neuroblastoma (\href{https://www.biorxiv.org/content/10.64898/2025.12.12.694008}{Preprint}).
 \end{list2}
 
 {\bf Visiting Researcher}
@@ -134,45 +121,28 @@ Computational biology, high-throughput omics data analysis, cancer proteomics, m
 
 \vspace{-.3cm}
 {\em North American University} \hfill {\bf September, 2015 - May, 2017}\\
-Leading student in Bioinformatics Lab at NAU. Mentored 4 junior and sophomore students.\\
-Designed an open source bioinformatics curriculum with Open Source Society in GitHub.
+Lead student researcher in Bioinformatics Lab at NAU. Mentored 4 junior and sophomore students.\\
+Designed an open source bioinformatics curriculum with Open Source Society on GitHub.
 
 {\em Yeditepe University} \hfill {\bf August, 2014 - May, 2015}\\
-Worked as a genomic data scientist to utilized virtual docking software to determine the best possible inhibitor for specific molecule by mainly using NCBI PubMed database.
+Worked as a genomic data scientist to utilize virtual docking software to determine the best possible inhibitor for specific molecule by mainly using NCBI PubMed database.
 %\begin{list2}
 %\item
 %\end{list2}
 
 {\em Texas Institute of Education and Research (TIBER)} \hfill {\bf September, 2014 - April, 2015}\\
-Wet-lab experience: Worked on drug development and testing process. Was responsible for preparing agar solutions, bacteria cultures, and liquid/solid drug tests on those bacteria cultures.
+Wet-lab experience: Worked on drug development and testing process. Prepared agar solutions, bacterial cultures, and conducted liquid/solid drug tests on those cultures.
 
 
-\section{\sc Teaching Experience}
-{\bf Teaching Assistant}
+\section{\sc Teaching \& Mentorship}
+{\bf Teaching Assistant}, {\em North American University} \hfill {\bf September 2015 - May 2017}\\
+Co-taught 4 undergraduate courses (Algorithms, Programming Languages, Software Engineering, Systems Programming) to over 60 students each semester. Prepared lab and supplementary sessions on Git/GitHub, Python, and Jupyter. Shared responsibilities for lectures, exams, homework, and grading.
 
-\vspace{-.3cm}
-{\em North American University} \hfill {\bf September 2015 - May 2017}\\
-Co-taught 4 undergraduate level courses for computer science department to over 60 students each semester. Prepared the lab and extra sessions on Git/GitHub, Rapid Python Programming, and Ipython/Jupyter. Shared responsibilities for preparing lectures, exams, homework assignments, and grading.
-\vspace*{.05in}
-\begin{list2}
-\item COMP 3317 Algorithms, Fall 2015, 2016.
-\item COMP 3320 Programming Languages, Fall 2016, Spring 2017.
-\item COMP 3322 Software Engineering, Fall 2016.
-\item COMP 2415 Systems Programming, Spring 2017
-\end{list2}
+{\bf Mathematics and Computer Science Tutor}, {\em North American University} \hfill {\bf January - May 2017}\\
+Tutored students in subjects ranging from college algebra to differential equations and from CS1 to Data Mining.
 
-
-{\bf Mathematics and Computer Science Tutor}
-\vspace{-.1cm}
-
-{\em North American University} \hfill {\bf January - May 2017}\\
-Helped and advised students about their school classes. Tutored in various subjects from college algebra to differential equations in Mathematics domain and from CS1 to Data Mining in Computer Science domain.
-
-{\bf Instructor}
-\vspace{-.1cm}
-
-{\em North American University} \hfill {\bf February - April 2015}\\
-Taught Basic Python programming course to 35 people including students, faculty, and staff of NAU, which was a first ever course taught solely by a student in NAU. (\href{https://github.com/NAU-Python-Class/Py101-Spring-15}{Link})
+{\bf Instructor}, {\em North American University} \hfill {\bf February - April 2015}\\
+Taught introductory Python programming to 35 students, faculty, and staff---the first course taught solely by a student at NAU. (\href{https://github.com/NAU-Python-Class/Py101-Spring-15}{Link})
 
 
 \section{\sc Publications}
@@ -272,16 +242,10 @@ North American University: President's Honor Roll , 2015-2017
 North American University: Outstanding Student of the Year, 2015
 
 
-\section{\sc Extracurricular Activities}
+\section{\sc Professional Memberships}
 \begin{list2}
-\item ISCB (International society of computational biology), {\em Member} \hfill {\bf August, 2016 - present}
+\item ISCB (International Society of Computational Biology), {\em Member} \hfill {\bf August, 2016 - present}
 \item ACM (Association for Computing Machinery), {\em Member} \hfill  {\bf February 2013 - present}
-\item NAU Kazakh Student Association, {\em Club Advisor} \hfill {\bf September 2016 - May 2017}
-\item NAU Future Leaders Club, {\em Founder and Director} \hfill {\bf April, 2015 - May 2017}
-\item Student Government, {\em VP of Unity and Social Justice} \hfill  {\bf September 2014 - May 2017}
-\item NAU ACM, {\em Member} \hfill {\bf September 2013 - May 2017}
-\item NAU ACM, {\em Vice President} \hfill  {\bf September 2015 - May 2016}
-\item NAU ACM, {\em Secretary} \hfill  {\bf February 2013 - September 2014}
 \end{list2}
 
 \section{\sc Technical Skills}
