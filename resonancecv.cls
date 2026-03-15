@@ -74,7 +74,9 @@
 \RequirePackage{xcolor}           % colour support
 \RequirePackage{needspace}        % \Needspace — avoid orphaned section heads
 \RequirePackage{hyperref}         % clickable links & PDF metadata
-\RequirePackage{url}              % \url command and style control
+\RequirePackage{xurl}             % \xurl command and style control
+% \RequirePackage{fontawesome5}     % icon support
+% \RequirePackage{fontawesome5}      % icon support
 
 %% ── Page geometry ─────────────────────────────────────────────────────────────
 \geometry{
@@ -136,12 +138,14 @@
 \newlength{\resonance@sectionwidth}   % gutter column: holds section labels
 \newlength{\resonance@sectiongap}     % gap between gutter edge and body text
 \newlength{\resonance@bodyindent}     % = sectionwidth + sectiongap
+\newlength{\resonance@dategap}        % gap between entry text and date
 \newlength{\resonance@datewidth}      % right date column width
 \newlength{\resonance@contentwidth}   % scratch: recomputed per macro call
 
 \setlength{\resonance@sectionwidth}{0.95in}
 \setlength{\resonance@sectiongap}    {0.08in}
 \setlength{\resonance@datewidth}     {1.45in}
+\setlength{\resonance@dategap}      {0.5em}
 \setlength{\resonance@bodyindent}    {\resonance@sectionwidth + \resonance@sectiongap}
 
 %% ── Font declarations ─────────────────────────────────────────────────────────
@@ -159,12 +163,12 @@
 %%                         column and must not compete with body text.
 %%
 \newcommand{\namefont}      {\fontsize{18}{20}\selectfont\bfseries}
-\newcommand{\taglinefont}   {\normalsize\itshape\color{ResonanceMuted}}
-\newcommand{\sectionfont}   {\normalfont\sffamily\bfseries\footnotesize\color{ResonanceAccent}}
+\newcommand{\taglinefont}   {\normalsize\itshape\leavevmode\color{ResonanceMuted}}
+\newcommand{\sectionfont}   {\normalfont\sffamily\bfseries\footnotesize\leavevmode\color{ResonanceAccent}}
 \newcommand{\entrytitlefont}{\normalfont\bfseries}
-\newcommand{\entryorgfont}  {\normalfont\small\itshape\color{ResonanceMuted}}
-\newcommand{\datefont}      {\small\bfseries\color{ResonanceMuted}}
-\newcommand{\subheadingfont}{\normalfont\bfseries\normalsize\color{ResonanceMuted}}
+\newcommand{\entryorgfont}  {\normalfont\small\itshape\leavevmode\color{ResonanceMuted}}
+\newcommand{\datefont}      {\small\bfseries\leavevmode\color{ResonanceMuted}}
+\newcommand{\subheadingfont}{\normalfont\bfseries\normalsize\leavevmode\color{ResonanceMuted}}
 \newcommand{\scholarlyfont} {\normalsize}
 
 %% ── Column types ─────────────────────────────────────────────────────────────
@@ -176,6 +180,8 @@
 \newcommand{\resonance@tagline} {}
 \newcommand{\resonance@contacts}{}
 \newcommand{\resonance@pdftitle}{Curriculum Vitae}
+\newtoggle{resonance@aftersection}
+\togglefalse{resonance@aftersection}
 
 %% ── User configuration commands ───────────────────────────────────────────────
 \NewDocumentCommand{\name}   {m}{\gdef\resonance@name{#1}}
@@ -197,38 +203,37 @@
 %% Appends one full-width tabularx row to the contact block rendered in the
 %% header.  Left column is ragged-right and stretches; right column is
 %% right-aligned and stretches equally.  Rows are collected and emitted together.
-\newcommand{\resonance@contactrow}[2]{%
-  \noindent
-  \begin{tabularx}{\linewidth}{@{} Y @{\hspace{1em}} >{\raggedleft\arraybackslash}X @{}}
-    #1 & #2 \\
-  \end{tabularx}\par
-}
+\newcommand{\resonance@contactrow}[2]{#1 & #2 \\}
 \NewDocumentCommand{\contactline}{m m}{%
   \gappto\resonance@contacts{\resonance@contactrow{#1}{#2}}%
 }
 
 %% ── PDF metadata ──────────────────────────────────────────────────────────────
-\newcommand{\resonance@applymetadata}{%
-  \hypersetup{
-    pdftitle   = {\resonance@pdftitle},
-    pdfauthor  = {\resonance@name},
-    pdfsubject = {Curriculum Vitae},
+\AtBeginDocument{%
+  \hypersetup{%
+    pdftitle   = {\resonance@pdftitle},%
+    pdfauthor  = {\resonance@name},%
+    pdfsubject = {Curriculum Vitae},%
   }%
 }
-
 %% ── Header rendering ──────────────────────────────────────────────────────────
 %% Called automatically at the start of the {resume} environment.
 %%   line option:     name / tagline / contacts / horizontal rule
 %%   centered option: centred name / tagline / contacts (no rule)
 \newcommand{\resonance@makeheader}{%
-  \resonance@applymetadata
+
   \ifresonance@lineheader
     {\namefont \resonance@name\par}%
     \ifstrempty{\resonance@tagline}{}{%
       \vspace{0.1em}{\taglinefont \resonance@tagline\par}%
     }%
     \vspace{0.25em}%
-    \resonance@contacts
+    \ifx\resonance@contacts\empty\else
+      \noindent
+      \begin{tabularx}{\linewidth}{@{} Y @{\hspace{1em}} >{\raggedleft\arraybackslash}X @{}}
+        \resonance@contacts
+      \end{tabularx}\par
+    \fi
     \vspace{0.2em}\hrule height 0.4pt\vspace{0.45em}%
   \else
     \begin{center}
@@ -238,7 +243,12 @@
       }%
     \end{center}%
     \vspace{0.25em}%
-    \resonance@contacts
+    \ifx\resonance@contacts\empty\else
+      \noindent
+      \begin{tabularx}{\linewidth}{@{} Y @{\hspace{1em}} >{\raggedleft\arraybackslash}X @{}}
+        \resonance@contacts
+      \end{tabularx}\par
+    \fi
     \vspace{0.45em}%
   \fi
 }
@@ -249,6 +259,7 @@
 \newenvironment{resume}{%
   \resonance@makeheader
   \begin{adjustwidth}{\resonance@bodyindent}{0pt}%
+  \RaggedRight%
 }{%
   \end{adjustwidth}%
 }
@@ -259,10 +270,12 @@
 %% wrap cleanly without affecting body content alignment.
 %% \MakeUppercase keeps .tex source readable; PDF shows all-caps labels.
 \renewcommand\section[1]{%
+  \global\toggletrue{resonance@aftersection}%
+  \phantomsection\addcontentsline{toc}{section}{#1}%
   \par\Needspace{3\baselineskip}\addvspace{0.45\baselineskip}%
   \noindent\leavevmode
   \makebox[0pt][r]{%
-    \parbox[t]{\resonance@sectionwidth}{\RaggedRight\sectionfont\MakeUppercase{#1}}%
+    \smash{\raisebox{0.25\baselineskip}[0pt][0pt]{\parbox[t]{\resonance@sectionwidth}{\RaggedRight\sectionfont\MakeUppercase{#1}}}}%
     \hspace{\resonance@sectiongap}%
   }%
   \ignorespaces
@@ -274,7 +287,7 @@
 \newlist{cvitems}{itemize}{2}
 \setlist[cvitems,1]{%
   label      = \textbullet,
-  leftmargin = 1.1em,
+  leftmargin = *,
   itemsep    = 0pt,
   topsep     = 1.5pt,
   parsep     = 0pt,
@@ -282,7 +295,7 @@
 }
 \setlist[cvitems,2]{%
   label      = \textendash,
-  leftmargin = 1.2em,
+  leftmargin = *,
   itemsep    = 0pt,
   topsep     = 1pt,
   parsep     = 0pt,
@@ -302,7 +315,7 @@
 \newlist{publist}{enumerate}{1}
 \setlist[publist]{%
   label      = {\datefont\arabic*.},  %% muted bold number: "1.", "2.", ...
-  leftmargin = 2em,
+  leftmargin = *,
   labelsep   = 0.5em,
   itemsep    = 0.5em,    %% clear separation between entries
   topsep     = 0.05em,
@@ -338,13 +351,17 @@
 %% Full entry: title+date header row, italic org/institution, freeform body.
 %% Use for: Experience, Teaching, Education (\degreeentry alias).
 \NewDocumentCommand{\cventry}{m m m +m}{%
-  \ifhmode\unskip\else
-    \Needspace{4\baselineskip}\addvspace{0.35\baselineskip}\noindent
-  \fi
-  \setlength{\resonance@contentwidth}{\dimexpr\linewidth - \resonance@datewidth - 0.5em\relax}%
-  \parbox[t]{\resonance@contentwidth}{\entrytitlefont #1}%
-  \hfill{\datefont\mbox{#3}}\par\nopagebreak
-  {\entryorgfont #2}\par\nopagebreak
+  \iftoggle{resonance@aftersection}{\global\togglefalse{resonance@aftersection}}{%
+    \par\addvspace{0.35\baselineskip}\noindent
+  }%
+  \setlength{\resonance@contentwidth}{\dimexpr\linewidth - \resonance@datewidth - \resonance@dategap\relax}%
+  \noindent\makebox[\linewidth][l]{%
+    \parbox[t]{\resonance@contentwidth}{\strut\entrytitlefont #1}%
+    \hfill
+    \parbox[t]{\resonance@datewidth}{\strut\raggedleft\datefont\microtypesetup{protrusion=false}#3}%
+  }\par
+  \Needspace{4\baselineskip}%
+  {\entryorgfont #2}\par
   #4\par
 }
 
@@ -356,40 +373,56 @@
 %% Entry with title+date header row and body; no org/institution line.
 %% Use for: Software, Projects.
 \NewDocumentCommand{\cvdateditem}{m m +m}{%
-  \ifhmode\unskip\else
-    \Needspace{3\baselineskip}\addvspace{0.35\baselineskip}\noindent
-  \fi
-  \setlength{\resonance@contentwidth}{\dimexpr\linewidth - \resonance@datewidth - 0.5em\relax}%
-  \parbox[t]{\resonance@contentwidth}{\entrytitlefont #1}%
-  \hfill{\datefont\mbox{#2}}\par\nopagebreak
+  \iftoggle{resonance@aftersection}{\global\togglefalse{resonance@aftersection}}{%
+    \par\addvspace{0.35\baselineskip}\noindent
+  }%
+  \setlength{\resonance@contentwidth}{\dimexpr\linewidth - \resonance@datewidth - \resonance@dategap\relax}%
+  \noindent\makebox[\linewidth][l]{%
+    \parbox[t]{\resonance@contentwidth}{\strut\entrytitlefont #1}%
+    \hfill
+    \parbox[t]{\resonance@datewidth}{\strut\raggedleft\datefont\microtypesetup{protrusion=false}#2}%
+  }\par
+  \Needspace{3\baselineskip}%
   #3\par
 }
 
 %% \cvrow{text}{date}
 %% Plain single-line entry: text left, date right.  No bullet, no body block.
 \NewDocumentCommand{\cvrow}{m m}{%
-  \ifhmode\unskip\else\addvspace{0.1\baselineskip}\noindent\fi
-  \setlength{\resonance@contentwidth}{\dimexpr\linewidth - \resonance@datewidth - 0.5em\relax}%
-  \parbox[t]{\resonance@contentwidth}{#1}%
-  \hfill{\datefont\mbox{#2}}\par
+  \iftoggle{resonance@aftersection}{\global\togglefalse{resonance@aftersection}}{%
+    \par\addvspace{0.1\baselineskip}\noindent
+  }%
+  \setlength{\resonance@contentwidth}{\dimexpr\linewidth - \resonance@datewidth - \resonance@dategap\relax}%
+  \noindent\makebox[\linewidth][l]{%
+    \parbox[t]{\resonance@contentwidth}{\strut #1}%
+    \hfill
+    \parbox[t]{\resonance@datewidth}{\strut\raggedleft\datefont\microtypesetup{protrusion=false}#2}%
+  }\par
 }
 
 %% \cvminorrow{text}{date}
 %% Compact bulleted entry: bullet + text left, date right.
 %% Use for: Awards, Memberships, Leadership, Certificates.
 \NewDocumentCommand{\cvminorrow}{m m}{%
-  \ifhmode\unskip\else\addvspace{0.1\baselineskip}\noindent\fi
-  \setlength{\resonance@contentwidth}{\dimexpr\linewidth - \resonance@datewidth - 0.5em\relax}%
-  \parbox[t]{\resonance@contentwidth}{\textbullet\ #1}%
-  \hfill{\datefont\mbox{#2}}\par
+  \iftoggle{resonance@aftersection}{\global\togglefalse{resonance@aftersection}}{%
+    \par\addvspace{0.1\baselineskip}\noindent
+  }%
+  \setlength{\resonance@contentwidth}{\dimexpr\linewidth - \resonance@datewidth - \resonance@dategap\relax}%
+  \noindent\makebox[\linewidth][l]{%
+    \parbox[t]{\resonance@contentwidth}{\strut\textit{\textbullet}\ #1}%
+    \hfill
+    \parbox[t]{\resonance@datewidth}{\strut\raggedleft\datefont\microtypesetup{protrusion=false}#2}%
+  }\par
 }
 
 %% \cvskill{Category}{items}
 %% Skill line: bold category label followed by item text.  No date column.
 %% Example: \cvskill{Languages}{Python, R, Java, Bash}
 \NewDocumentCommand{\cvskill}{m m}{%
-  \ifhmode\unskip\else\addvspace{0.1\baselineskip}\noindent\fi
-  \textbullet\ \textbf{#1:} #2\par
+  \iftoggle{resonance@aftersection}{\global\togglefalse{resonance@aftersection}}{%
+    \par\addvspace{0.1\baselineskip}\noindent
+  }%
+  \textit{\textbullet}\ \textbf{#1:} #2\par
 }
 
 %% ── Sub-section label ─────────────────────────────────────────────────────────
@@ -398,9 +431,11 @@
 %% (e.g. "Oral Presentations", "Peer-Reviewed Articles").
 %% \ifhmode: starts flush after \section{}; adds vspace between entry groups.
 \newcommand{\cvsubheading}[1]{%
-  \ifhmode\unskip\else
-    \Needspace{2\baselineskip}\addvspace{0.35\baselineskip}\noindent
-  \fi
+  \iftoggle{resonance@aftersection}{%
+    \global\togglefalse{resonance@aftersection}%
+  }{%
+    \par\Needspace{2\baselineskip}\addvspace{0.35\baselineskip}\noindent
+  }%
   {\subheadingfont #1\par}\vspace{0.05em}%
 }
 
@@ -411,9 +446,11 @@
 %% continuation lines past the opening character, giving a standard
 %% bibliography appearance.  Use for Publications and Presentations.
 \NewDocumentCommand{\pubentry}{+m}{%
-  \ifhmode\unskip\else
-    \Needspace{2\baselineskip}\addvspace{0.15\baselineskip}%
-  \fi
+  \iftoggle{resonance@aftersection}{%
+    \global\togglefalse{resonance@aftersection}%
+  }{%
+    \par\Needspace{2\baselineskip}\addvspace{0.15\baselineskip}\noindent
+  }%
   {\scholarlyfont\RaggedRight\sloppy
     \hangindent=1.2em\hangafter=1\noindent #1\par}%
 }
@@ -422,11 +459,15 @@
 %% Talk/presentation entry: venue + right-aligned date on the first row,
 %% talk title on the line below.
 \NewDocumentCommand{\talkentry}{m m m}{%
-  \ifhmode\unskip\else
-    \Needspace{3\baselineskip}\addvspace{0.3\baselineskip}\noindent
-  \fi
-  \setlength{\resonance@contentwidth}{\dimexpr\linewidth - \resonance@datewidth - 0.5em\relax}%
-  \parbox[t]{\resonance@contentwidth}{\entryorgfont #1}%
-  \hfill{\datefont\mbox{#2}}\par\nopagebreak
+  \iftoggle{resonance@aftersection}{\global\togglefalse{resonance@aftersection}}{%
+    \par\addvspace{0.3\baselineskip}\noindent
+  }%
+  \setlength{\resonance@contentwidth}{\dimexpr\linewidth - \resonance@datewidth - \resonance@dategap\relax}%
+  \noindent\makebox[\linewidth][l]{%
+    \parbox[t]{\resonance@contentwidth}{\strut\entryorgfont #1}%
+    \hfill
+    \parbox[t]{\resonance@datewidth}{\strut\raggedleft\datefont\microtypesetup{protrusion=false}#2}%
+  }\par
+  \Needspace{3\baselineskip}%
   {\scholarlyfont #3\par}%
 }
