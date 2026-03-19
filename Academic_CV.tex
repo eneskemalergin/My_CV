@@ -1,268 +1,132 @@
-\documentclass[margin,line]{res}
+\documentclass[line]{resonancecv}
 
+\cvtitle{Enes Kemal Ergin -- Academic CV}
+\name{Enes Kemal Ergin, PhD}
+\tagline{Computational biologist \textbar{} Proteomics \textbar{} Machine Learning \textbar{} Pediatric Cancer}
 
-\usepackage{pifont}      % required for \ding symbols used in list1 environment
-\usepackage{microtype}   % better typography, reduces overfull hbox warnings
-\usepackage{enumitem}    % modern list control
-\usepackage{hyperref}
-\hypersetup{
-   colorlinks,
-   citecolor=black,
-   filecolor=black,
-   linkcolor=black,
-   urlcolor=blue
-}
-
-\usepackage{url}
-
-\oddsidemargin -.5in
-\evensidemargin -.5in
-\textwidth=6.0in
-\itemsep=0in
-\parsep=0in
-
-%if using pdflatex:
-\setlength{\pdfpagewidth}{\paperwidth}
-\setlength{\pdfpageheight}{\paperheight}
-
-\newlist{list1}{itemize}{1}
-\setlist[list1]{label=\ding{113},nosep,leftmargin=0.17in}
-\newlist{list2}{itemize}{2}
-\setlist[list2]{label=$\bullet$,nosep,leftmargin=0.2in}
-
+\contactline{\textit{Cell:} 778-751-1649}{\textit{GitHub:} \href{https://github.com/eneskemalergin}{github.com/eneskemalergin}}
+\contactline{\textit{Work:} 604-875-2000 ext:7146}{\textit{LinkedIn:} \href{https://www.linkedin.com/in/eneskemalergin/}{linkedin.com/in/eneskemalergin}}
+\contactline{\textit{E-mail:} \href{mailto:eergin@bcchr.ca}{eergin@bcchr.ca}}{\textit{Portfolio:} \href{https://eneskemalergin.github.io}{eneskemalergin.github.io}}
+\contactline{\phantom{\textit{E-mail:}\ }\href{mailto:eneskemalergin@gmail.com}{eneskemalergin@gmail.com}}{\textit{Google Scholar:} \href{https://scholar.google.com/citations?user=6iZzHecAAAAJ\&hl=en}{Enes K. Ergin}}
 
 \begin{document}
 
-\name{Enes Kemal Ergin, PhD \vspace*{.1in}}
-
 \begin{resume}
-\section{\sc Contact Information}
-\vspace{.05in}
-\begin{tabular}{@{}p{2.3in}p{3.45in}}
-{\it Cell:} 778-751-1649                                                               & \hfill {\it GitHub:}  \href{https://github.com/eneskemalergin}{github.com/eneskemalergin} \\
-{\it Work:} 604-875-2000 ext:7146                                                      & \hfill {\it LinkedIn:}  \href{https://www.linkedin.com/in/eneskemalergin/}{linkedin.com/in/eneskemalergin} \\
-{\it E-mail:}  \href{mailto:eergin@bcchr.ca}{eergin@bcchr.ca}                         & \hfill {\it Portfolio:}  \href{https://eneskemalergin.github.io}{eneskemalergin.github.io} \\
-\hspace{3.65em}\href{mailto:eneskemalergin@gmail.com}{eneskemalergin@gmail.com}        & \hfill {\it Google Scholar:}  \href{https://scholar.google.com/citations?user=6iZzHecAAAAJ&hl=en}{Enes K. Ergin} \\
-\end{tabular}
 
-
-\section{\sc Research Interests}
+\section{Research Interests}
 Computational biology, high-throughput omics data analysis, cancer proteomics, machine learning applications in biomedical research, systems biology, and bioinformatics.
 
-\section{\sc Education}
+\section{Education}
+\degreeentry{PhD, Bioinformatics}{University of British Columbia (UBC), Vancouver, BC}{May 2019 -- Apr 2025}{%
+\textbf{Advisor:} Philipp F. Lange\\
+\textbf{Thesis:} \href{https://open.library.ubc.ca/cIRcle/collections/ubctheses/24/items/1.0448334}{``Computational interrogation of proteoform dynamics in pediatric cancer''}}
 
-{\bf University of British Columbia (UBC)}, Vancouver, BC Canada\\
-{\em Bioinformatics}
-\begin{list1}
-\item[]  PhD, Bioinformatics, May 2019 - April, 2025
-\begin{list2}
-\vspace*{.05in}
-\item {\bf Advisor:}  Philipp F. Lange
-\item {\bf Thesis Title:}  \href{https://open.library.ubc.ca/cIRcle/collections/ubctheses/24/items/1.0448334}{``Computational interrogation of proteoform dynamics in pediatric cancer''}
-\end{list2}
-\end{list1}
+\degreeentry{MSc, Bioinformatics}{University of British Columbia (UBC), Vancouver, BC}{Sep 2017 -- May 2019}{Transferred directly into the PhD program.}
 
-{\bf University of British Columbia (UBC)}, Vancouver, BC Canada\\
-{\em Bioinformatics}
-\begin{list1}
-\item[]  MSc, Bioinformatics, Sep 2017 - May 2019 (Transferred to PhD)
-\end{list1}
+\degreeentry{BSc, Computer Science (Software Engineering)}{North American University (NAU), Houston, TX}{Sep 2013 -- May 2017}{Exceptional Merit Scholarship Recipient.}
 
-{\bf North American University (NAU)}, Houston, Texas USA\\
-{\em Software Engineering}
-\begin{list1}
-\item[] BSc, Computer Science,  Sep 2013 - May 2017
-\end{list1}
-
-
-\section{\sc Research Experience}
-
-{\bf Staff Bioinformatician}
-
-\vspace{-.3cm}
-{\em BC Children's Hospital Research Institute} \hfill {\bf June, 2025 - present}\\
-\vspace{-.3cm}
+\section{Research Experience}
+\cventry{Staff Bioinformatician}{BC Children's Hospital Research Institute}{Jun 2025 -- Present}{%
 \begin{list2}
 \item Develop and maintain computational infrastructure for large-scale proteomics data analysis across multiple childhood cancer cohorts.
 \item Implement statistical methods and machine learning approaches to support translational research in pediatric oncology.
-\end{list2}
+\end{list2}}
 
-{\bf Graduate Research Assistant}
-
-\vspace{-.3cm}
-{\em BC Children's Hospital Research Institute} \hfill {\bf September, 2017 - April, 2025}\\
-\vspace{-.3cm}
+\cventry{Graduate Research Assistant}{BC Children's Hospital Research Institute}{Sep 2017 -- Apr 2025}{%
 \begin{list2}
 \item Developed and implemented \href{https://github.com/LangeLab/Analysis_of_QuEStVar_Manuscript}{QuEStVar}, expanding statistical explainability through equivalence testing, resulting in a first-author publication in the \href{https://doi.org/10.1021/acs.jproteome.4c00131}{\emph{Journal of Proteome Research}}.
 \item Built \href{https://github.com/LangeLab/SQuAPP}{SQuAPP}, a tool to enhance peptide-level identification and quantification in proteomics data, published in \href{https://doi.org/10.1093/bioinformatics/btac628}{\emph{Bioinformatics}}.
 \item Created \href{https://github.com/LangeLab/ProteoForge_Analysis}{ProteoForge}, an imputation-aware framework for identifying quantitatively distinct proteoforms at the peptide level in Neuroblastoma (\href{https://www.biorxiv.org/content/10.64898/2025.12.12.694008}{Preprint}).
-\end{list2}
+\end{list2}}
 
-{\bf Visiting Researcher}
-
-\vspace{-.3cm}
-{\em Harvard Medical School} \hfill {\bf November, 2015 - September, 2016}\\
-\vspace{-.3cm}
+\cventry{Visiting Researcher}{Harvard Medical School}{Nov 2015 -- Sep 2016}{%
 \begin{list2}
-\item Research: Predicting the determinants of alternative mRNA splicing
+\item Predicted determinants of alternative mRNA splicing using a deep convolutional neural network trained on 11 histone modification datasets (pilot in HeLa cells).
+\item Developed a machine learning-based algorithm for transcription factor binding-site prediction across cell types, utilizing approximately 900\,GB of data.
+\end{list2}}
+
+\cventry{Undergraduate Research Assistant}{North American University}{Sep 2015 -- May 2017}{%
+Lead student researcher in the Bioinformatics Lab; mentored four junior and sophomore students. Designed an open source bioinformatics curriculum with Open Source Society on GitHub.}
+
+\cventry{Undergraduate Research Assistant}{Yeditepe University}{Aug 2014 -- May 2015}{%
+Worked as a genomic data scientist using virtual docking software to identify candidate inhibitors for specific target molecules, drawing on the NCBI PubMed database.}
+
+\cventry{Undergraduate Research Assistant}{Texas Institute of Education and Research (TIBER)}{Sep 2014 -- Apr 2015}{%
+Wet-lab experience in drug development and testing: prepared agar solutions and bacterial cultures and conducted liquid and solid drug tests.}
+
+\section{Teaching \& Mentorship}
+\cventry{Teaching Assistant}{North American University}{Sep 2015 -- May 2017}{%
+Co-taught four undergraduate computer science courses to more than 60 students per semester. Prepared lab sessions on Git/GitHub, Python, and Jupyter; shared responsibility for lectures, exams, homework, and grading.
 \begin{list2}
-\item {\bf Aim:} To determine how histone modifications influence the alternative splicing.
-\item Developed a {\bf deep convolutional neural network} to predict mRNA expression patterns from 11 different histone modification datasets (pilot in HeLa cells).
+\item COMP 3317 Algorithms
+\item COMP 3320 Programming Languages
+\item COMP 3322 Software Engineering
+\item COMP 2415 Systems Programming
+\end{list2}}
 
-\end{list2}
-\item Research: Predicting transcription factor binding sites across cell types
-\begin{list2}
-\item {\bf Aim:} To develop a general framework to predict transcription factor (TF) binding sites across various cell types.
-\item Developed a machine learning-based algorithm that can utilize large datasets (approximately 900GB) for estimating TF binding sites.
-\end{list2}
-\end{list2}
+\cventry{Mathematics and Computer Science Tutor}{North American University}{Jan 2017 -- May 2017}{%
+Tutored students in subjects ranging from college algebra and differential equations to CS1 and Data Mining.}
 
-{\bf Undergraduate Research Assistant}
+\cventry{Instructor}{North American University}{Feb 2015 -- Apr 2015}{%
+Taught introductory Python programming to 35 students, faculty, and staff --- the first course taught solely by a student at NAU. (\href{https://github.com/NAU-Python-Class/Py101-Spring-15}{GitHub})}
 
-\vspace{-.3cm}
-{\em North American University} \hfill {\bf September, 2015 - May, 2017}\\
-Lead student researcher in Bioinformatics Lab at NAU. Mentored 4 junior and sophomore students.\\
-Designed an open source bioinformatics curriculum with Open Source Society on GitHub.
+\section{Publications}
+\cvsubheading{Manuscripts Under Review}
+\begin{publist}
+\item \me{Ergin, E. K.}, Conrrero, A., Ferguson, K. M., Lange, P. F. (\pubyear{2025}). ProteoForge: An Imputation-Aware Framework for Differential Proteoform Discovery in Bottom-Up Proteomics, \emph{bioRxiv}, under review at \emph{Journal of Proteome Research}.
+\end{publist}
 
-{\em Yeditepe University} \hfill {\bf August, 2014 - May, 2015}\\
-Worked as a genomic data scientist to utilize virtual docking software to determine the best possible inhibitor for specific molecule by mainly using NCBI PubMed database.
-%\begin{list2}
-%\item
-%\end{list2}
+\cvsubheading{Peer-Reviewed Articles and Thesis}
+\begin{publist}
+\item \me{Ergin, E. K.} (\pubyear{2025}). \href{https://open.library.ubc.ca/cIRcle/collections/ubctheses/24/items/1.0448334}{Computational interrogation of proteoform dynamics in pediatric cancer}. PhD thesis, University of British Columbia, Vancouver, BC, Canada. Supervisor: Philipp F. Lange.
+\item Barnabas, G. D., Bhat, T. A., Goebeler, V., Leclair, P., Azzam, N., Melong, N., Anderson, C., Gom, A., An, S., \me{Ergin, E. K.}, Shen, Y., Conrrero, A., Mungall, A. J., Mungall, K. L., Maxwell, C. A., Reid, G. S. D., Hirst, M., Jones, S., Chan, J. A., Senger, D. L., Berman, J. N., Parker, S. J., Bush, J. W., Strahlendorf, C., Deyell, R. J., Lim, C. J., Lange, P. F. (\pubyear{2025}). Proteomics and personalized PDX models identify treatment for a progressive malignancy within an actionable timeframe, \href{https://pmc.ncbi.nlm.nih.gov/articles/PMC11982353/}{doi: 10.1038/s44321-025-00107-w}, \emph{EMBO Molecular Medicine}.
+\item \me{Ergin, E. K.}, Myung, J. J. K., Lange, P. F. (\pubyear{2024}). Statistical Testing for Protein Equivalence Identifies Core Functional Modules Conserved across 360 Cancer Cell Lines and Presents a General Approach to Investigating Biological Systems, \href{https://doi.org/10.1021/acs.jproteome.4c00131}{doi: 10.1021/acs.jproteome.4c00131}, \emph{Journal of Proteome Research}.
+\item Lorentzian, A. C., Rever, J., \me{Ergin, E. K.}, Guo, M., Akella, N. M., Rolf, N., Lim, C. J., Reid, G. S. D., Maxwell, C. A., Lange, P. F. (\pubyear{2023}). Targetable lesions and proteomes predict therapy sensitivity through disease evolution in pediatric acute lymphoblastic leukemia, \href{https://doi.org/10.1038/s41467-023-42701-9}{doi: 10.1038/s41467-023-42701-9}, \emph{Nature Communications}.
+\item \me{Ergin, E. K.}, Uzozie, A. C., Chen, S., Su, Y., Lange, P. F. (\pubyear{2022}). SQuAPP: Simple Quantitative Analysis of Proteins and PTMs, \href{https://doi.org/10.1093/bioinformatics/btac628}{doi: 10.1093/bioinformatics/btac628}, \emph{Bioinformatics}.
+\item Uzozie, A. C., \me{Ergin, E. K.}, Rolf, N., Tsui, J., Lorentzian, A., Weng, S. H., Nierves, L., Smith, T., Lim, C. J., Maxwell, C., Reid, G. S. D., Lange, P. F. (\pubyear{2022}). PDX models reflect the proteome landscape of pediatric acute lymphoblastic leukemia but divert in select pathways, \href{https://dx.doi.org/10.1186\%2Fs13046-021-01835-8}{doi: 10.1186/s13046-021-01835-8}, \emph{Journal of Experimental and Clinical Cancer Research}.
+\item Weng, S. H.*, Demir, F.*, \me{Ergin, E. K.}, Dirnberger, S., Uzozie, A., Tuscher, D., Nierves, L., Tsui, J., Huesgen, P. F., Lange, P. F. (\pubyear{2019}). Sensitive determination of proteolytic proteoforms in limited microscale proteome samples, \href{https://doi.org/10.1074/mcp.TIR119.001560}{doi: 10.1074/mcp.TIR119.001560}, \emph{Molecular and Cellular Proteomics}.
+\item Kocabas, F., \me{Ergin, E. K.} (\pubyear{2016}). Identification of small molecule binding pocket for inhibition of Crimean-Congo hemorrhagic fever virus OTU protease, \href{https://doi.org/10.3906/biy-1501-56}{doi: 10.3906/biy-1501-56}, \emph{Turkish Journal of Biology}.
+\end{publist}
 
-{\em Texas Institute of Education and Research (TIBER)} \hfill {\bf September, 2014 - April, 2015}\\
-Wet-lab experience: Worked on drug development and testing process. Prepared agar solutions, bacterial cultures, and conducted liquid/solid drug tests on those cultures.
+\section{Presentations}
+\cvsubheading{Oral Presentations}
+\begin{publist}
+\item \me{Ergin, E. K.} (\pubyear{2023}). Exploring Stable Proteome in Cancer Cell Line Atlas with QuEStVar, Trainee Omics Group (TOG), Jun 2023.
+\item \me{Ergin, E. K.} (\pubyear{2023}). InPACCT: Integrated Proteomics Analysis of Curated Childhood Tumours, Canadian National Proteomics Network, May 2023.
+\item \me{Ergin, E. K.} (\pubyear{2020}). Normalization in Proteomics: Past, Present, and Future, Trainee Omics Group (TOG), May 2020.
+\end{publist}
 
+\cvsubheading{Workshop Presentations}
+\begin{publist}
+\item \me{Ergin, E. K.} (\pubyear{2023}). Proteomics Workshop -- Common Downstream Analysis Pipeline, Trainee Omics Group (TOG), Jul 2023.
+\end{publist}
 
-\section{\sc Teaching \& Mentorship}
-{\bf Teaching Assistant}, {\em North American University} \hfill {\bf September 2015 - May 2017}\\
-Co-taught 4 undergraduate courses (Algorithms, Programming Languages, Software Engineering, Systems Programming) to over 60 students each semester. Prepared lab and supplementary sessions on Git/GitHub, Python, and Jupyter. Shared responsibilities for lectures, exams, homework, and grading.
+\cvsubheading{Poster Presentations}
+\begin{publist}
+\item Jenane, L., Nierves, L., \me{Ergin, E. K.}, Lange, P. F. (\pubyear{2024}). Characterization of a New Type of Neoantigen in T-Cell Acute Lymphoblastic Leukemia (T-ALL) by Cell Surface Terminomics, US HUPO 2024, Portland, OR, USA.
+\item Yadegari, M., \me{Ergin, E. K.}, Lange, P. F. (\pubyear{2023}). Detection of Shed Surface Proteins and Processed Oncoproteoforms in Biofluids, Canadian Cancer Research Conference 2023, Halifax, NS, Canada.
+\item \me{Ergin, E. K.}, Rostin, K., Lange, P. F. (\pubyear{2023}). InPACCT: Integrated proteomics analyses of curated childhood tumours, Canadian National Proteomics Network, Regina, SK, Canada.
+\item \me{Ergin, E. K.}, Lange, P. F. (\pubyear{2023}). Stable Proteome in Cancer Cell Lines with Combined Testing, Canadian National Proteomics Network, Regina, SK, Canada.
+\item Rostin, K., \me{Ergin, E. K.}, Lange, P. F. (\pubyear{2023}). Insightful, Integrated Analyses of Public Pediatric Cancer Proteomics with InPACCT, BIG 23 Research Day, Vancouver, BC, Canada.
+\item Weng, S. H., Demir, F., \me{Ergin, E. K.}, Dirnberger, S., Uzozie, A., Tuscher, D., Nierves, L., Tsui, J., Huesgen, P. F., Lange, P. F. (\pubyear{2019}). Sensitive determination of proteolytic proteoforms in limited samples, 2019 Pathology Day, Vancouver, BC, Canada.
+\item Ji, J., Thibodeau, M., \me{Ergin, E. K.}, Culibrk, L., Smith, T. (\pubyear{2018}). SWI/SNF Chromatin Remodeling Complex in Clear Cell Ovarian Cancer. Stat540 Group Project Poster Session.
+\end{publist}
 
-{\bf Mathematics and Computer Science Tutor}, {\em North American University} \hfill {\bf January - May 2017}\\
-Tutored students in subjects ranging from college algebra to differential equations and from CS1 to Data Mining.
+\section{Honors \& Awards}
+\cvminorrow{Four Year Doctoral Fellowship Award}{2019 -- 2023}
+\cvminorrow{Michael Cuccione Childhood Cancer Foundation Graduate Studentship}{2018 -- 2019}
+\cvminorrow{North American University Exceptional Merit Scholarship}{2012 -- 2017}
+\cvminorrow{North American University President's Honor Roll}{2015 -- 2017}
+\cvminorrow{North American University Outstanding Student of the Year}{2015}
 
-{\bf Instructor}, {\em North American University} \hfill {\bf February - April 2015}\\
-Taught introductory Python programming to 35 students, faculty, and staff---the first course taught solely by a student at NAU. (\href{https://github.com/NAU-Python-Class/Py101-Spring-15}{Link})
+\section{Memberships}
+\cvminorrow{ISCB (International Society of Computational Biology)}{Aug 2016 -- Present}
+\cvminorrow{ACM (Association for Computing Machinery)}{Feb 2013 -- Present}
 
-
-\section{\sc Publications}
-{\bf Under Review}
-
-\vspace*{-.3cm}
-{\bf Ergin, E. K.}, Conrrero, A., Ferguson, K. M., Lange, P. F. (2025). ProteoForge: An Imputation-Aware Framework for Differential Proteoform Discovery in Bottom-Up Proteomics, {\em bioRxiv}, (Under review at Journal of Proteome Research).
-
-
-{\bf Published}
-
-% {\bf Ergin, E. K.}, Conrrero, A., Ferguson, K. M., Lange, P. F. (2025). ProteoForge: An Imputation-Aware Framework for Differential Proteoform Discovery in Bottom-Up Proteomics, \href{}{doi: }, {\em Journal of Proteome Research}.
-
-{\bf Ergin, E. K.} (2025). \href{https://open.library.ubc.ca/cIRcle/collections/ubctheses/24/items/1.0448334}{Computational interrogation of proteoform dynamics in pediatric cancer}. PhD Thesis, University of British Columbia, Vancouver, BC, Canada. Supervisor: Philipp F. Lange.
-
-Barnabas, G. D., Bhat, T. A., Goebeler, V., Leclair, P., Azzam, N., Melong, N., Anderson, C., Gom, A., An, S., {\bf Ergin, E. K.}, Shen, Y., Conrrero, A., Mungall, A. J., Mungall, K. L., Maxwell, C. A., Reid, G. S. D., Hirst, M., Jones, S., Chan, J. A., Senger, D. L., Berman, J. N., Parker, S. J., Bush, J. W., Strahlendorf, C., Deyell, R. J., Lim, C. J., Lange, P. F. (2025). Proteomics and personalized PDX models identify treatment for a progressive malignancy within an actionable timeframe, \href{https://pmc.ncbi.nlm.nih.gov/articles/PMC11982353/}{doi: 10.1038/s44321-025-00107-w}, {\em EMBO Molecular Medicine}.
-
-{\bf Ergin, E. K.}, Myung, J. J. K., Lange, P. F. (2024). Statistical Testing for Protein Equivalence Identifies Core Functional Modules Conserved across 360 Cancer Cell Lines and Presents a General Approach to Investigating Biological Systems, \href{https://doi.org/10.1021/acs.jproteome.4c00131}{doi: 10.1021/acs.jproteome.4c00131}, {\em Journal of Proteome Research}.
-
-Lorentzian, A. C., Rever, J., {\bf Ergin, E. K.}, Guo, M., Akella, N. M., Rolf, N., Lim, C. J., Reid, G. S. D., Maxwell, C. A., Lange, P. F. (2023). Targetable lesions and proteomes predict therapy sensitivity through disease evolution in pediatric acute lymphoblastic leukemia, \href{https://doi.org/10.1038/s41467-023-42701-9}{doi: 10.1038/s41467-023-42701-9}, {\em Nature Communications}.
-
-{\bf Ergin, E. K.}, Uzozie, A.C., Chen, S., Su, Y., Lange, P.F. (2022). SQuAPP - Simple Quantitative Analysis of Proteins and PTMs, \href{https://doi.org/10.1093/bioinformatics/btac628}{doi: 10.1093/bioinformatics/btac628}, {\em Bioinformatics}.
-
-Uzozie A., {\bf Ergin, E. K.}, Rolf N., Tsui J., Lorentzian A., Weng S.H,  Nierves L., Smith T., Lim C.J,  Maxwell C., Reid S.G, Lange P.F. (2022). PDX models reflect the proteome landscape of pediatric acute lymphoblastic leukemia but divert in select pathways, \href{https://dx.doi.org/10.1186%2Fs13046-021-01835-8}{doi: 10.1186/s13046-021-01835-8}, {\em Journal of Experimental and Clinical Cancer Research}.
-
-Weng S.H*, Demir F.*, {\bf Ergin, E. K.}, Dirnberger S., Uzozie A., Tuscher D., Nierves L., Tsui J., Huesgen P.F, Lange P.F. (2019). Sensitive determination of proteolytic proteoforms in limited microscale proteome samples, \href{https://doi.org/10.1074/mcp.TIR119.001560}{doi: 10.1074/mcp.TIR119.001560}, {\em Molecular and Cellular Proteomics}.
-
-Kocabas F., {\bf Ergin, E. K.} (2016). Identification of small molecule binding pocket for inhibition of Crimean-Congo hemorrhagic fever virus OTU protease, \href{https://www.researchgate.net/profile/Fatih_Kocabas/publication/284188739_Identification_of_small_molecule_binding_pocket_for_inhibition_of_Crimean-Congo_hemorrhagic_fever_virus_OTU_protease/links/564f6a0b08aefe619b11de98.pdf}{doi: 10.3906/biy-1501-56}, {\em Turkish Journal of Biology}.
-
-
-\section{\sc Presentations}
-{\bf Oral Presentations}
-
-\vspace{-.3cm}
-{\em Trainee Omics Group (TOG)} \hfill {\bf May 2020}\\
-{\bf Title:} Normalization in Proteomics: Past, Present, and Future
-
-{\em 2023 Canadian National Proteomics Network} \hfill {\bf May 2023}\\
-{\bf Title:} InPACCT: Integrated Proteomics Analysis of Curated Childhood Tumours
-
-{\em Trainee Omics Group (TOG)} \hfill {\bf June 2023}\\
-{\bf Title:} Exploring Stable Proteome in Cancer Cell Line Atlas with QuEStVar
-
-{\bf Workshop Presentations}
-
-\vspace{-.3cm}
-{\em Trainee Omics Group (TOG)} \hfill {\bf July 2023}\\
-{\bf Title:} Proteomics Workshop - Common Downstream Analysis Pipeline
-
-{\bf Poster Presentations}
-
-\vspace{-.3cm}
-Ji J., Thibodeau M., {\bf Ergin, E. K.}, Culibrk L., Smith T. (2018). SWI/SNF Chromatin Remodeling Complex in Clear Cell Ovarian Cancer. Stat540 Group Project Poster Session.
-
-Weng S. H., Demir F., {\bf Ergin, E. K.}, Dirnberger S., Uzozie A., Tuscher D., Nierves L., Tsui J., Huesgen P.F, Lange P.F. (2019). Sensitive determination of proteolytic proteoforms in limited samples, 2019 Pathology Day, Vancouver, BC, Canada.
-
-Rostin K., {\bf Ergin, E. K.}, Lange P.F. (2023). Insightful, Integrated Analyses of Public Pediatric Cancer Proteomics with InPACCT, BIG 23 Research Day, Vancouver, BC, Canada.
-
-{\bf Ergin, E. K.}, Lange P.F. (2023). Stable Proteome in Cancer Cell Lines with Combined Testing, BIG 23 Research Day, Vancouver, BC, Canada.
-
-{\bf Ergin, E. K.}, Lange P.F. (2023). Stable Proteome in Cancer Cell Lines with Combined Testing, 2023 Canadian National Proteomics Network, Regina, SK, Canada.
-
-{\bf Ergin, E. K.}, Rostin K., Lange P.F. (2023). InPACCT: Integrated proteomics analyses of curated childhood tumours, 2023 Canadian National Proteomics Network, Regina, SK, Canada.
-
-Yadegari M., {\bf Ergin, E. K.}, Lange P.F. (2023) Detection of Shed Surface Proteins and Processed Oncoproteoforms in Biofluids, Canadian Cancer Research Conference 2023, Halifax, NS, Canada.
-
-Jenane L., Nierves L., {\bf Ergin, E. K.}, Lange P.F. (2024) Characterization of a New Type of Neoantigen in T-Cell Acute Lymphoblastic Leukemia (T-ALL) by Cell Surface Terminomics, US HUPO 2024, Portland, OR, USA.
-
-
-\section{\sc Projects}
-
-% Ask this to people and fix descriptions.
-
-{\bf Open Source Bioinformatics Curriculum} \hfill {\bf June  2016}\\
-Developed an open source bioinformatics curriculum with contributions of open source society, which gives aspiring bioinformatics scientists chance to start building their foundational knowledge. (\href{https://github.com/open-source-society/bioinformatics}{Link})
-
-{\bf Scholar Development Center} \hfill {\bf February  2016}\\
-Created a non-profit community based organization under the Raindrop Foundation to help Turkish undergraduate students around Texas to achieve their dreams in academia or industry.
-
-\vspace{\baselineskip}
-
-\section{\sc Honors and Awards}
-
-Four Year Doctoral Fellowship Award, 2019-2023
-
-\vspace*{-2.5mm}
-
-Michael Cuccione Childhood Cancer Foundation Graduate Studentship, 2018-2019
-
-\vspace*{-2.5mm}
-North American University: Exceptional Merit Scholarship, 2012-2017
-
-\vspace*{-2.5mm}
-North American University: President's Honor Roll , 2015-2017
-
-\vspace*{-2.5mm}
-North American University: Outstanding Student of the Year, 2015
-
-
-\section{\sc Professional Memberships}
-\begin{list2}
-\item ISCB (International Society of Computational Biology), {\em Member} \hfill {\bf August, 2016 - present}
-\item ACM (Association for Computing Machinery), {\em Member} \hfill  {\bf February 2013 - present}
-\end{list2}
-
-\section{\sc Technical Skills}
-\begin{list2}
-\item {\bf Languages:}  Python (Numpy, Pandas, Polars, Matplotlib, Seaborn, Scipy, Biopython, Scikit-learn, PyTorch, Tensorflow), R (tidyverse, shiny, limma, deseq2, msstats), Java, \LaTeX{}, C/C++, Shell/Bash Scripting, Javascript, HTML, CSS
-\item {\bf Database Systems:} SQL, MySQL, MongoDB
-\item {\bf Operating Systems:}  Unix/Linux, MacOS, Windows.
-\end{list2}
-
-% \section{\sc References}
-% \begin{list2}
-% \item Assistant Prof. Dr.Philipp Lange, Pathology Department, University of British Columbia, Vancouver, BC, Canada, \href{philipp.lange@ubc.ca}{philipp.lange@ubc.ca}
-% \item Assistant Prof. Dr. Stirling L. Churchman, Genetics Department, Harvard Medical School, Boston, MA, USA, \href{churchman@genetics.med.harvard.edu}{churchman@genetics.med.harvard.edu}
-% \item Associate Prof. Dr. Kemal Aydin, Computer Science Department, North American University, Houston, TX, USA, \href{kemal@na.edu}{kemal@na.edu}
-% \item Prof. Dr. Cengiz Zubeyir Altuntas, Director of Texas Institute of Biotechnology Education and Research, North American University, Houston, TX, USA \href{cza@na.edu}{cza@na.edu}
-% \end{list2}
-
+\section{Skills}
+\cvskill{Languages and Libraries}{Python (NumPy, Pandas, Polars, Matplotlib, Seaborn, SciPy, Biopython, scikit-learn, PyTorch, TensorFlow), R (tidyverse, shiny, limma, DESeq2, MSstats), Java, \LaTeX{}, C/C++, Bash, JavaScript, HTML, CSS}
+\cvskill{Data and Systems}{SQL, MySQL, MongoDB, Unix/Linux, macOS, Windows}
 
 \end{resume}
+
 \end{document}
