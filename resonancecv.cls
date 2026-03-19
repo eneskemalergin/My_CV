@@ -275,7 +275,7 @@
   \par\Needspace{3\baselineskip}\addvspace{0.45\baselineskip}%
   \noindent\leavevmode
   \makebox[0pt][r]{%
-    \smash{\raisebox{0.25\baselineskip}[0pt][0pt]{\parbox[t]{\resonance@sectionwidth}{\RaggedRight\sectionfont\MakeUppercase{#1}}}}%
+    \smash{\raisebox{0.25\baselineskip}[0pt][0pt]{\parbox[t]{\resonance@sectionwidth}{\raggedright\hyphenpenalty=10000\exhyphenpenalty=10000\sectionfont\MakeUppercase{#1}}}}%
     \hspace{\resonance@sectiongap}%
   }%
   \ignorespaces
